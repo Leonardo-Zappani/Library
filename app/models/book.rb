@@ -11,4 +11,6 @@ class Book < ApplicationRecord
   #
   #       t.timestamps
   belongs_to :user, optional: true
+
+  has_one_attached :cover_image, dependent: :destroy
 end

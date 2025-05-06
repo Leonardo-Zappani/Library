@@ -72,3 +72,6 @@ yarn-debug.log*
 /vendor/bundle
 log/development.log
 *.log
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
