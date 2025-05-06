@@ -6,9 +6,9 @@ class User < ApplicationRecord
   scope :subscribed, -> { where.not(stripe_subscription_id: [nil, '']) }
   scope :reviewers, -> { where('permissions @> ARRAY[?]::varchar[]', ['review']) }
 
-  def role
-    return 'Admin' if admin?
+  has_many :books
 
-    'Autor'
+  def role
+    admin? ? 'Admin' : 'User'
   end
 end
