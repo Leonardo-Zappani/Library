@@ -10,7 +10,7 @@
             <%= image_tag @blog_post.cover_image, class:"aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover" if @blog_post.cover_image.attached? %>
             <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
           </div>
-          <% if current_user&.admin? || current_user&.can_create? %>
+          <% if current_user&.admin? %>
             <div class="mx-auto mt-4">
               <div class="flex space-x-2 my-2 mx-auto justify-center items-center">
                 <%= link_to edit_blog_post_path(@blog_post.slug), class:"shrink-0 mt-4 md:mt-0 inline-flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500" do %>
@@ -58,7 +58,7 @@
           </article>
         </div>
 
-        <% if current_user&.can_review? %>
+        <% if current_user&.present? %>
           <%= form_with url: review_grade_path(@blog_post.id), method: :post, local: true do |form| %>
             <div class="w-full justify-center">
               <%= form.label :nota, class: "block text-sm font-medium text-gray-700" %>
