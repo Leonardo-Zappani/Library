@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :readers
-  root 'books#index'
+  root 'books#available'
 
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_up: 'signup' }
   get 'logout', to: 'pages#logout', as: 'logout'
 
-  resources :subscribe, only: [:index]
-  resources :dashboard, only: [:index]
   resources :account, only: [:index, :update]
   resources :books, controller: :books
   resources :users
@@ -32,7 +30,6 @@ Rails.application.routes.draw do
     end
 
     # convenience helper
-    get 'books_dashboard', to: 'dashboard#index'
-    get 'readers_dashboard', to: 'dashboard#index'
+    get 'available_books', to: 'books#available'
   end
 end

@@ -1,7 +1,7 @@
 <header class="py-4 px-2" data-controller="header">
   <nav class="flex items-center justify-between flex-wrap">
     <div class="flex items-center flex-no-shrink text-white mr-6">
-      <% logo_path = current_user ? dashboard_index_path : root_path %>
+      <% logo_path = available_books_path %>
       <%= link_to logo_path, class:"flex items-center hover:opacity-80" do %>
         <%= image_tag "avatar.png",  style: "max-height: 42px" %>
         <span class="font-semibold text-xl tracking-tight text-primary-600"><%= ENV['COMPANY_NAME'] %></span>
@@ -17,13 +17,13 @@
 
     <div id="main-nav" class="w-full flex-grow sm:flex text-right sm:w-auto hidden" data-header-target="mainNav">
       <div class="text-sm sm:flex-grow">
-        <%= link_to 'Livros disponiveis', root_path, class: nav_link_classes('') %>
+        <%= link_to 'Livros disponiveis', available_books_path, class: nav_link_classes('available_books') %>
         <% if current_user.present? %>
-          <%= link_to 'Livros', 'books_dashboard', class: nav_link_classes('books_dashboard') if current_user&.admin? %>
+          <%= link_to 'Livros', books_path, class: nav_link_classes('books') if current_user&.admin? %>
           <%= link_to 'Leitores',  readers_path, class: nav_link_classes('readers') %>
           <%= link_to 'Bibliotecários',  users_path, class: nav_link_classes('users') %>
           <%= link_to 'Minha conta', account_index_path, class: nav_link_classes('account') %>
-          <%= link_to 'Sair', logout_path, class: nav_link_classes %>
+          <%= link_to 'Sair', logout_path, class: nav_link_classes('exit') %>
         <% else %>
           <%= link_to 'Entre', new_user_session_path, class: nav_link_classes('login') %>
           <%= link_to 'Cadastre-se', new_user_registration_path, class: 'ml-8 whitespace-nowrap text-base font-medium inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700' %>
