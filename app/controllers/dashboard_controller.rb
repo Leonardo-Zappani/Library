@@ -2,6 +2,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @books = Book.all
+    @users = User.all.order(created_at: :desc)
+    @books = Book.all.order(created_at: :desc)
   end
 end

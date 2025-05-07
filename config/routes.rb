@@ -20,14 +20,7 @@ Rails.application.routes.draw do
     get "/#{page}", to: "pages##{page}", as: page.gsub('-', '_').to_s
   end
 
-  get '/blog/approve/:id' => 'blog_posts#approve', as: 'approve_blog_post'
-  get '/blog/assign/:id' => 'blog_posts#assign', as: 'assign_blog_post'
-  get '/blog/publish/:id' => 'blog_posts#publish', as: 'publish_blog_post'
-  get '/artigos' => 'blog_posts#artigos', as: 'artigos'
-  get '/review' => 'blog_posts#review', as: 'review'
-  get '/write' => 'blog_posts#write', as: 'write'
-  post '/invite' => 'admin/users#invite', as: 'invite'
-  post '/grades/:id' => 'blog_posts#review_grade', as: 'review_grade'
+  post '/invite' => 'users#invite', as: 'invite'
 
   # admin panels
   authenticated :user, ->(user) { user.admin? } do
@@ -38,6 +31,7 @@ Rails.application.routes.draw do
     end
 
     # convenience helper
-    get 'admin', to: 'admin/dashboard#index'
+    get 'books_dashboard', to: 'dashboard#index'
+    get 'readers_dashboard', to: 'dashboard#index'
   end
 end

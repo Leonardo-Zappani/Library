@@ -18,12 +18,9 @@
     <div id="main-nav" class="w-full flex-grow sm:flex text-right sm:w-auto hidden" data-header-target="mainNav">
       <div class="text-sm sm:flex-grow">
         <%= link_to 'Livros disponiveis', root_path, class: nav_link_classes('') %>
-        <%= link_to 'Escrever', '/write', class: nav_link_classes('write') if current_user&.present? %>
-        <% if current_user %>
-          <%= link_to 'Gerenciar', admin_dashboard_index_path, class: nav_link_classes('admin/dashboard') if current_user&.admin? %>
-          <% if current_user&.present? %>
-            <%= link_to 'Avaliar', '/review', class: nav_link_classes('review') %>
-          <% end %>
+        <% if current_user.present? %>
+          <%= link_to 'Livros', 'books_dashboard', class: nav_link_classes('books_dashboard') if current_user&.admin? %>
+          <%= link_to 'Leitores',  'readers_dashboard', class: nav_link_classes('readers_dashboard') %>
           <%= link_to 'Minha conta', account_index_path, class: nav_link_classes('account') %>
           <%= link_to 'Sair', logout_path, class: nav_link_classes %>
         <% else %>
