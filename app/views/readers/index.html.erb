@@ -1,14 +1,24 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
+<% meta title: "Leitores", description: "Leitores ativos" %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Readers</h1>
-    <%= link_to "New reader", new_reader_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+<div class="mt-16 mx-auto max-w-3xl px-4 sm:mt-24">
+  <div class="text-center">
+    <h1 class="text-2xl tracking-tight font-extrabold sm:text-3xl md:text-4xl font-display text-gray-800">
+      <span class="block">Leitores</span>
+    </h1>
   </div>
+</div>
 
-  <div id="readers" class="min-w-full">
-    <%= render @readers %>
-  </div>
+<div class="font-inter antialiased text-gray-800 tracking-tight my-16">
+  <main class="grow">
+    <section>
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+          <% @readers.each do |reader| %>
+            <%= render reader %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </main>
+
 </div>

@@ -1,4 +1,4 @@
-<%= form_for(user, url: admin_user_path(id: user.id)) do |f| %>
+<%= form_for(user, url: user_path(id: user.id)) do |f| %>
   <div class="mb-2">
     <label for="company_name">Email Address</label>
     <%= f.text_field :email, required: true, class: "appearance-none rounded-b-md rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:border-primary-300 focus:z-10 sm:text-sm sm:leading-5", placeholder: "Acme Co" %>

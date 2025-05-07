@@ -1,8 +1,10 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing reader</h1>
+<div class="flex">
+  <div class="mx-auto">
+    <div class="text-center">
+      <h3 class="text-xl mb-4">Editing user "<%= @user.email %>"</h3>
+      <%= button_to "Delete", admin_user_path(id: @user.id), form: { data: { turbo_confirm: "Are you sure? This will delete the user forever." } }, method: :delete, class: 'text-xs text-white bg-red-500 p-2 rounded-md' %>
+    </div>
 
-  <%= render "form", reader: @reader %>
-
-  <%= link_to "Show this reader", @reader, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to readers", readers_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= render 'profile', user: @user %>
+  </div>
 </div>
