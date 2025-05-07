@@ -1,17 +1,36 @@
-<%= form_with(model: reader, class: "contents") do |form| %>
+<%= form_with(model: reader) do |form| %>
   <% if reader.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(reader.errors.count, "error") %> prohibited this reader from being saved:</h2>
-
-      <ul>
-        <% reader.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+    <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
+      <h2><%= pluralize(reader.errors.count, "erro") %> proibiu este leitor de ser salvo:</h2>
+      <ul class="list-disc pl-5">
+        <% reader.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="space-y-6 bg-white border shadow p-6 rounded-lg">
+    <div>
+      <%= form.label :name, "Nome", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :name, required: true,
+                          class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500" %>
+    </div>
+
+    <div>
+      <%= form.label :email, "Email", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.email_field :email, required: true,
+                           class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500" %>
+    </div>
+
+    <div>
+      <%= form.label :code, "Código", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :code, required: true,
+                          class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500" %>
+    </div>
+  </div>
+
+  <div class="mt-6 flex justify-end">
+    <%= form.submit class: "px-6 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700" %>
   </div>
 <% end %>

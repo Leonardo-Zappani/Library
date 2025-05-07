@@ -1,4 +1,4 @@
-<% meta title: "Leitores", description: "Leitores ativos" %>
+<% meta title: "Leitores", description: "Todos os leitores" %>
 
 <div class="mt-16 mx-auto max-w-3xl px-4 sm:mt-24">
   <div class="text-center">
@@ -12,7 +12,11 @@
   <main class="grow">
     <section>
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div class="flex justify-end mb-6 w-full">
+          <%= link_to "Novo Leitor", new_reader_path,
+                      class: "px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700" %>
+        </div>
+        <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 lg:mx-0 lg:max-w-none lg:grid-cols-2 ">
           <% @readers.each do |reader| %>
             <%= render reader %>
           <% end %>
@@ -20,5 +24,4 @@
       </div>
     </section>
   </main>
-
 </div>

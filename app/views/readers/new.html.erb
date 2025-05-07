@@ -1,7 +1,12 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New reader</h1>
+<% meta title: "Novo leitor", description: "Criar um novo leitor" %>
 
+<h1 class="text-xl text-center font-bold leading-tight text-gray-900 mt-8">Novo Leitor</h1>
+
+<div class="flex justify-center mt-6">
+  <%= link_to "Voltar para leitores", readers_path,
+              class: "px-4 py-2 border rounded-md hover:bg-gray-50" %>
+</div>
+
+<div class="max-w-2xl mx-auto mt-8">
   <%= render "form", reader: @reader %>
-
-  <%= link_to "Back to readers", readers_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>
