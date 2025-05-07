@@ -21,7 +21,7 @@ class ReadersController < ApplicationController
 
   # POST /readers or /readers.json
   def create
-    @reader = Reader.new(reader_params)
+    @reader = Reader.new(name: params[:reader][:name], email: params[:reader][:email], code: params[:reader][:code])
 
     respond_to do |format|
       if @reader.save
@@ -37,7 +37,7 @@ class ReadersController < ApplicationController
   # PATCH/PUT /readers/1 or /readers/1.json
   def update
     respond_to do |format|
-      if @reader.update(reader_params)
+      if @reader.update(name: params[:reader][:name], email: params[:reader][:email], code: params[:reader][:code])
         format.html { redirect_to reader_url(@reader), notice: "Reader was successfully updated." }
         format.json { render :show, status: :ok, location: @reader }
       else
