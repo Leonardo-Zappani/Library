@@ -1,0 +1,28 @@
+<% meta title: @user.name, description: @user.email %>
+
+<div class="font-inter antialiased text-gray-800 tracking-tight my-16">
+  <main>
+    <section>
+      <div class="mx-auto max-w-2xl px-4 lg:px-8">
+        <%= link_to "← Voltar para usuários", users_path, class: "hover:opacity-75 font-semibold" %>
+
+        <article class="mt-8 space-y-4">
+          <h1 class="text-2xl font-bold text-gray-900"><%= @user.name %></h1>
+          <p class="text-sm text-gray-600">Criado em: <%= @user.created_at.strftime("%d/%m/%Y") %></p>
+
+          <div class="prose">
+            <p><strong>Email:</strong> <%= @user.email %></p>
+          </div>
+
+          <div class="flex space-x-2 mt-6">
+            <%= link_to "Editar", edit_user_path(@user), class: "px-4 py-2 border rounded-md hover:bg-gray-50" %>
+            <%= button_to @user, method: :delete, data: { confirm: "Tem certeza?" },
+                          class: "px-4 py-2 border rounded-md hover:bg-gray-50" do %>
+              Deletar
+            <% end %>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</div>

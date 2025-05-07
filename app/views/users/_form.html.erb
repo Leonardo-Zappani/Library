@@ -1,0 +1,38 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
+      <h2><%= pluralize(user.errors.count, "erro") %> proibiu este usuário de ser salvo:</h2>
+      <ul class="list-disc pl-5">
+        <% user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="space-y-6 bg-white border shadow p-6 rounded-lg">
+    <div>
+      <%= form.label :name, "Nome", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :name, required: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500" %>
+    </div>
+
+    <div>
+      <%= form.label :email, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.email_field :email, required: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500" %>
+    </div>
+
+    <div>
+      <%= form.label :password, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.password_field :password, required: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500" %>
+    </div>
+
+    <div>
+      <%= form.label :password_confirmation, "Confirmação de senha", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.password_field :password_confirmation, required: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500" %>
+    </div>
+  </div>
+
+  <div class="mt-6 flex justify-end">
+    <%= form.submit class: "px-6 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700" %>
+  </div>
+<% end %>

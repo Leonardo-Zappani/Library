@@ -1,0 +1,10 @@
+<% meta title: "Novo usuário", description: "Criar um novo usuário" %>
+
+<h1 class="text-xl text-center font-bold text-gray-900 mt-8">Novo Usuário</h1>
+<div class="flex justify-center mt-6">
+  <%= link_to "Voltar para usuários", users_path, class: "px-4 py-2 border rounded-md hover:bg-gray-50" %>
+</div>
+
+<div class="max-w-2xl mx-auto mt-8">
+  <%= render "form", user: @user %>
+</div>

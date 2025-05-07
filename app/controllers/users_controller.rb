@@ -1,39 +1,52 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
+  before_action :set_user, only: %i[ show edit update destroy ]
 
   def index
-    @users = User.all.order(created_at: :desc)
+    @users = User.all
   end
 
-  def edit; end
+  def show
+  end
+
+  def new
+    @user = User.new
+  end
+
+  def edit
+  end
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      redirect_to user_path(@user), notice: "Usuário criado com sucesso."
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
   def update
-    @user.update(user_params)
-    redirect_to edit_admin_user_path(id: @user.id), notice: 'Usuário atualizado com sucesso!'
-  end
-
-  def invite
-    email = params[:email]
-    name = params[:name]
-
-    User.create!(email: email, name: name)
-    redirect_to available_books_path, notice: "Usuario '#{email}' foi convidado."
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "Usuário atualizado com sucesso."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    email = @user.email
-    DestroyUser.new(@user).call
-    redirect_to available_books_path, notice: "User '#{email}' was destroyed."
+    @user.destroy
+    redirect_to users_path, notice: "Usuário excluído com sucesso."
   end
 
   private
 
   def set_user
-    @user = User.find_by_id(params[:id])
+    @user = User.find(params[:id])
   end
 
+  # permit name, email, password (and confirmation)
   def user_params
-    params.require(:user).permit(:email, :admin)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end

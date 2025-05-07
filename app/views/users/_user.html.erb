@@ -1,17 +1,24 @@
-<%= form_for(user, url: user_path(id: user.id)) do |f| %>
-  <div class="mb-2">
-    <label for="company_name">Email Address</label>
-    <%= f.text_field :email, required: true, class: "appearance-none rounded-b-md rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:border-primary-300 focus:z-10 sm:text-sm sm:leading-5", placeholder: "Acme Co" %>
-  </div>
+<div id="<%= dom_id(user) %>" class="group relative bg-white border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
+  <div class="flex items-center p-6 space-x-4">
+    <!-- Initials avatar -->
+    <div class="h-12 w-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-bold text-lg">
+      <%= user.name.split.map(&:first).join.upcase %>
+    </div>
 
-  <div class="mb-2">
-    <label for="company_name">Senha</label>
-    <%= f.text_field :password, required: true, class: "appearance-none rounded-b-md rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:border-primary-300 focus:z-10 sm:text-sm sm:leading-5", placeholder: "Acme Co" %>
-  </div>
+    <!-- Name & Email -->
+    <div class="flex-1">
+      <h3 class="text-xl font-semibold text-gray-900"><%= user.name %></h3>
+      <p class="mt-1 text-sm text-gray-600 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M2.94 6.94a1.5 1.5 0 012.12 0L10 11.88l4.94-4.94a1.5 1.5 0 112.12 2.12l-6 6a1.5 1.5 0 01-2.12 0l-6-6a1.5 1.5 0 010-2.12z"/>
+        </svg>
+        <span class="ml-2"><%= user.email %></span>
+      </p>
+    </div>
 
-  <div class="mt-6">
-    <button type="submit" data-turbo="false" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:border-primary-700 transition duration-150 ease-in-out">
-      Atualizar
-    </button>
+    <!-- Details link -->
+    <%= link_to user_path(user), class: "absolute inset-0" do %>
+      <span class="sr-only">Ver detalhes de <%= user.name %></span>
+    <% end %>
   </div>
-<% end %>
+</div>
