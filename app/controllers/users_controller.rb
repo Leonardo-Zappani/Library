@@ -1,6 +1,10 @@
-class Admin::UsersController < ApplicationController
+class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
+
+  def index
+    @users = User.all.order(created_at: :desc)
+  end
 
   def edit; end
 

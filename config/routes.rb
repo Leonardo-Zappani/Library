@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index]
   resources :account, only: [:index, :update]
   resources :books, controller: :books
+  resources :users
 
   # static pages
   pages = %w[

@@ -1,4 +1,4 @@
-class Admin::ImpersonationsController < ApplicationController
+class ImpersonationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
 
