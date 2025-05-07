@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :readers
-  root 'blog_posts#index'
+  root 'books#index'
 
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_up: 'signup' }
   get 'logout', to: 'pages#logout', as: 'logout'
@@ -9,8 +9,7 @@ Rails.application.routes.draw do
   resources :subscribe, only: [:index]
   resources :dashboard, only: [:index]
   resources :account, only: [:index, :update]
-  resources :billing_portal, only: [:new, :create]
-  resources :blog_posts, controller: :blog_posts, path: "blog", param: :slug
+  resources :books, controller: :books
 
   # static pages
   pages = %w[
