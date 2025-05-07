@@ -18,13 +18,13 @@ class UsersController < ApplicationController
     name = params[:name]
 
     User.create!(email: email, name: name)
-    redirect_to admin_dashboard_index_path, notice: "Usuario '#{email}' foi convidado."
+    redirect_to available_books_path, notice: "Usuario '#{email}' foi convidado."
   end
 
   def destroy
     email = @user.email
     DestroyUser.new(@user).call
-    redirect_to admin_dashboard_index_path, notice: "User '#{email}' was destroyed."
+    redirect_to available_books_path, notice: "User '#{email}' was destroyed."
   end
 
   private

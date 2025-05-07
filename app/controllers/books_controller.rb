@@ -4,19 +4,11 @@ class BooksController < ApplicationController
 
   # GET /books
   def index
-    @books = Book.all.order(created_at: :asc).where(available: true)
-  end
-
-  def artigos
-    @books = Book.all.order(created_at: :asc).where(draft: false)
-  end
-
-  def review
-    @books = Book.all.order(created_at: :asc).where(reviewer: current_user.name).where(draft: true)
-  end
-
-  def write
     @books = Book.all.order(created_at: :asc)
+  end
+
+  def available
+    @books = Book.all.order(created_at: :asc).where(available: true)
   end
 
   def review_grade
@@ -51,7 +43,7 @@ class BooksController < ApplicationController
   def publish
     @book = Book.find(params[:id])
     @book.update(published: true)
-    redirect_to admin_dashboard_index_path
+    redirect_to available_books_path
   end
 
   def assign
