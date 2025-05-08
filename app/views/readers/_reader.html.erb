@@ -1,17 +1,17 @@
-<%= form_for(reader, url: readers_path(id: reader.id)) do |f| %>
-  <div class="mb-2">
-    <label for="company_name">Email</label>
-    <%= f.text_field :email, required: true, class: "appearance-none rounded-b-md rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:border-primary-300 focus:z-10 sm:text-sm sm:leading-5", placeholder: "Acme Co" %>
-  </div>
-
-  <div class="mb-2">
-    <label for="company_name">Código</label>
-    <%= f.text_field :code, required: true, class: "appearance-none rounded-b-md rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:border-primary-300 focus:z-10 sm:text-sm sm:leading-5", placeholder: "Acme Co" %>
-  </div>
-
-  <div class="mt-6">
-    <button type="submit" data-turbo="false" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:border-primary-700 transition duration-150 ease-in-out">
-      Atualizar
-    </button>
-  </div>
-<% end %>
+<%# render reader in index %>
+<div id="<%= dom_id(reader) %>">
+  <article class="flex flex-col justify-between p-6 border rounded-lg hover:shadow-lg transition-shadow duration-200">
+    <%= link_to reader_path(reader) do %>
+      <article class="mt-8 space-y-4">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900"><%= reader.name %></h1>
+          <p class="text-sm text-gray-600">Criado em: <%= reader.created_at.strftime("%d/%m/%Y") %></p>
+        </div>
+        <div class="prose">
+          <p><strong>Email:</strong> <%= reader.email %></p>
+          <p><strong>Código:</strong> <%= reader.code %></p>
+        </div>
+      </article>
+    <% end %>
+  </article>
+</div>

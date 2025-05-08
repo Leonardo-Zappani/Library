@@ -19,7 +19,7 @@
       <div class="text-sm sm:flex-grow">
         <%= link_to 'Livros disponiveis', available_books_path, class: nav_link_classes('available_books') %>
         <% if current_user.present? %>
-          <%= link_to 'Livros', books_path, class: nav_link_classes('books') if current_user&.admin? %>
+          <%= link_to 'Livros', books_path, class: nav_link_classes('books') %>
           <%= link_to 'Leitores',  readers_path, class: nav_link_classes('readers') %>
           <%= link_to 'Bibliotecários',  users_path, class: nav_link_classes('users') %>
           <%= link_to 'Minha conta', account_index_path, class: nav_link_classes('account') %>

@@ -30,6 +30,6 @@ Rails.application.routes.draw do
     end
 
     # convenience helper
-    get 'available_books', to: 'books#available'
   end
+  get 'available_books', to: 'books#available'
 end

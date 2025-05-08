@@ -1,24 +1,13 @@
-<% meta title: "Bibliotecarios", description: "Bibliotecarios ativos" %>
+<% meta title: "Usuários", description: "Todos os usuários" %>
 
-<div class="mt-16 mx-auto max-w-3xl px-4 sm:mt-24">
-  <div class="text-center">
-    <h1 class="text-2xl tracking-tight font-extrabold sm:text-3xl md:text-4xl font-display text-gray-800">
-      <span class="block">Bibliotecarios</span>
-    </h1>
-  </div>
+<div class="mt-16 mx-auto max-w-3xl px-4 sm:mt-24 text-center">
+  <h1 class="text-3xl font-extrabold text-gray-800">Usuários</h1>
+  <%= link_to "Novo Usuário", new_user_path,
+              class: "mt-4 inline-block px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700" %>
 </div>
 
-<div class="font-inter antialiased text-gray-800 tracking-tight my-16">
-  <main class="grow">
-    <section>
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          <% @users.each do |user| %>
-            <%= render user %>
-          <% end %>
-        </div>
-      </div>
-    </section>
-  </main>
-
+<div class="mt-12 mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <% @users.each do |user| %>
+    <%= render user %>
+  <% end %>
 </div>
