@@ -65,7 +65,6 @@ class BooksController < ApplicationController
 
   # PATCH/PUT /books/slug
   def update
-    @book.slug = params[:book][:slug]
     if @book.save && @book.update(book_params)
       redirect_to book_path(@book.id), notice: "Blog post was successfully updated."
     else
@@ -88,6 +87,6 @@ class BooksController < ApplicationController
 
   # Only allow a list of trusted parameters through, but add :body, and use slug instead of id in the URL.
   def book_params
-    params.require(:book).permit(:title, :slug, :description, :body, :cover_image, :draft, :name, :reviewer)
+    params.require(:book).permit(:title, :description, :cover_image, :reader)
   end
 end
