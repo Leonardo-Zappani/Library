@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BooksController < ApplicationController
-  before_action :set_book, only: %i[show edit update destroy]
+  before_action :set_book, only: %i[show edit update destroy mark_as_available]
   # before_action :authenticate_user!, only: %i[new create edit update destroy]
 
   # GET /books
@@ -11,16 +13,10 @@ class BooksController < ApplicationController
     @books = Book.all.order(created_at: :asc).where(available: true)
   end
 
-  def review_grade
-    @book = Book.find(params[:id])
-    review_grades = @book.review_grades
-    review_grades << params[:grade].to_i
-
-    weight_grade = @book.weight_grade
-    weight_grade << params[:weight_grade].to_i
-    @book.update(review_grades: review_grades, weight_grade: weight_grade)
-
-    redirect_to books_path
+  def mark_as_available
+    p 'aaaaa'
+    @book.update(available: true, reader_id: nil)
+    redirect_to available_books_path
   end
 
   # GET /books/slug
@@ -34,30 +30,12 @@ class BooksController < ApplicationController
   # GET /books/slug/edit
   def edit; end
 
-  def approve
-    @book = Book.find(params[:id])
-    @book.update(draft: false)
-    redirect_to books_path
-  end
-
-  def publish
-    @book = Book.find(params[:id])
-    @book.update(published: true)
-    redirect_to available_books_path
-  end
-
-  def assign
-    @book = Book.find(params[:id])
-    @book.update(reviewer: params[:name])
-    redirect_to books_path
-  end
-
   # POST /books
   def create
     @book = Book.new(book_params)
 
     if @book.save
-      redirect_to book_path(@book.id), notice: "Blog post was successfully created."
+      redirect_to book_path(@book.id), notice: 'Livro foi criado.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -65,8 +43,14 @@ class BooksController < ApplicationController
 
   # PATCH/PUT /books/slug
   def update
-    if @book.save && @book.update(book_params)
-      redirect_to book_path(@book.id), notice: "Blog post was successfully updated."
+    @book.title = book_params[:title]
+    @book.description = book_params[:description]
+    @book.reader_id = book_params[:reader_id]
+    @book.cover_image.attach(book_params[:cover_image]) if book_params[:cover_image].present?
+    @book.reader_id.present? ? @book.update(available: false) : @book.update(available: true)
+
+    if @book.save
+      redirect_to book_path(@book.id), notice: 'Livro foi atualizado com sucesso!.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -75,7 +59,7 @@ class BooksController < ApplicationController
   # DELETE /books/1
   def destroy
     @book.destroy
-    redirect_to books_url, notice: "Blog post was successfully destroyed."
+    redirect_to books_url, notice: 'Livro foi apagado.'
   end
 
   private
@@ -87,6 +71,6 @@ class BooksController < ApplicationController
 
   # Only allow a list of trusted parameters through, but add :body, and use slug instead of id in the URL.
   def book_params
-    params.require(:book).permit(:title, :description, :cover_image, :reader)
+    params.require(:book).permit(:title, :description, :cover_image, :reader_id)
   end
 end
