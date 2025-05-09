@@ -35,7 +35,7 @@
                   <img id="cover_image_preview" src="#" alt="Cover Image Preview" class="hidden"/>
                   <div class="mt-4 flex text-sm leading-6 text-gray-600 justify-center">
                     <label for="cover_image" class="relative cursor-pointer rounded-md bg-white font-semibold text-gray-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-gray-600 focus-within:ring-offset-2 hover:text-gray-500">
-                      <%= form.file_field :cover_image, id: 'cover_image', class: 'sr-only' %>
+                      <%= form.file_field :cover_image, id: 'cover_image', class: 'sr-only', required: !@book.cover_image.attached? %>
                     </label>
                     <p class="pl-1">Arraste aqui :)</p>
                   </div>

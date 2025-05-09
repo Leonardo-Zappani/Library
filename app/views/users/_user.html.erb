@@ -1,5 +1,5 @@
 <div id="<%= dom_id(user) %>"
-     class="w-full max-w-sm h-72
+     class="w-full max-w-sm h-72 pt-3
             group relative bg-white border border-gray-200 rounded-lg overflow-hidden
             shadow-sm hover:shadow-lg hover:-translate-y-1 transform transition duration-200
             flex flex-col">
@@ -22,7 +22,7 @@
   </div>
 
   <!-- rodapé -->
-  <div class="px-6 py-2 bg-gray-50 text-center">
+  <div class="px-6 py-2 bg-gray-50 text-center mt-1">
     <p class="text-xs text-gray-400 uppercase">
       Entrou em <%= l(user.created_at.to_date, format: :long) %>
     </p>

@@ -7,7 +7,7 @@
         <%= link_to "← Voltar para todos os livros", books_path, class:"hover:opacity-75 mr-1 w-fit font-semibold" %>
         <article class="flex flex-col items-start justify-between mt-4">
           <div class="relative w-full">
-            <%= image_tag @book.cover_image, class:"aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover" if @book.cover_image.attached? %>
+            <%= image_tag @book.cover_image, class:"aspect-[9/16] w-full h-full rounded-2xl bg-gray-100 object-cover" if @book.cover_image.attached? %>
             <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
           </div>
           <% if current_user.present? %>
