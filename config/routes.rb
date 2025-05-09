@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get 'logout', to: 'pages#logout', as: 'logout'
 
   resources :account, only: [:index, :update]
-  resources :books, controller: :books
+  resources :books do
+    member do
+      post 'mark_as_available'
+    end
+  end
   resources :users
 
   # static pages
