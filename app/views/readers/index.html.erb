@@ -16,9 +16,11 @@
           <%= link_to "Novo Leitor", new_reader_path,
                       class: "px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700" %>
         </div>
-        <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 lg:mx-0 lg:max-w-none lg:grid-cols-2 ">
+        <div class="mt-12 mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <% @readers.each do |reader| %>
+            <div class="p-2 h-full ">
             <%= render reader %>
+            </div>
           <% end %>
         </div>
       </div>
