@@ -16,7 +16,14 @@
           <%= link_to "Novo Leitor", new_reader_path,
                       class: "px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700" %>
         </div>
-        <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div
+          class="grid
+                 grid-cols-1        <!-- 1 coluna por padrão -->
+                 sm:grid-cols-2     <!-- ≥640px: 2 colunas -->
+                 md:grid-cols-3     <!-- ≥768px: 3 colunas -->
+                 lg:grid-cols-4     <!-- ≥1024px: 4 colunas -->
+                 gap-x-8 gap-y-20
+                 mx-auto lg:mx-0">
           <% @readers.each do |reader| %>
             <%= render reader %>
           <% end %>

@@ -43,6 +43,7 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/slug
   def update
     @book.title = book_params[:title]
+    @book.author = book_params[:author]
     @book.description = book_params[:description]
     @book.reader_id = book_params[:reader_id]
     @book.cover_image.attach(book_params[:cover_image]) if book_params[:cover_image].present?
@@ -70,6 +71,6 @@ class BooksController < ApplicationController
 
   # Only allow a list of trusted parameters through, but add :body, and use slug instead of id in the URL.
   def book_params
-    params.require(:book).permit(:title, :description, :cover_image, :reader_id)
+    params.require(:book).permit(:title, :author, :description, :cover_image, :reader_id)
   end
 end
