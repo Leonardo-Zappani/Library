@@ -1,4 +1,4 @@
-# Biblioteca MVC – Sistema de Gestão de Empréstimo de Livros
+# Luminary – Sistema de Gestão de Empréstimo de Livros
 
 Uma aplicação web desenvolvida com Ruby on Rails e Tailwind CSS que permite o gerenciamento de uma biblioteca. O sistema segue o padrão de arquitetura MVC e possui funcionalidades para leitores e bibliotecários.
 
