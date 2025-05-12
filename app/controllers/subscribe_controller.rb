@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SubscribeController < ApplicationController
   before_action :authenticate_user!
   before_action :maybe_skip_onboarding

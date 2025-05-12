@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AccountController < ApplicationController
   before_action :authenticate_user!
   before_action :set_flashes

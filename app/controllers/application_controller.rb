@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   # uncomment to allow extra User model params during registration (beyond email/password)
   # before_action :configure_permitted_parameters, if: :devise_controller?
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     root_path
   end
 

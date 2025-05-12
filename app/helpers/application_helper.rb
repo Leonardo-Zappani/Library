@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def tooltip_message(label, content)
     "<p class='has-speedrail-tooltip' style='display: inline-block'>
@@ -24,8 +26,10 @@ module ApplicationHelper
   end
 
   def nav_link_classes(path = nil)
-    defaults = 'ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900'
-    defaults.gsub!('gray', 'black').gsub!('-medium', '-bold') if request.path == "/#{path}"
+    defaults = 'ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900'.dup
+    if request.path == "/#{path}"
+      defaults = defaults.gsub('gray', 'black').gsub('-medium', '-bold')
+    end
     defaults
   end
 

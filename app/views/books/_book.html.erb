@@ -1,25 +1,27 @@
 <%= link_to book_path(book),
-            class: "group block w-full max-40 h-72 flex flex-col
+            class: "group block w-full max-w-xs h-72 flex flex-col
                     bg-white border border-gray-200 rounded-lg overflow-hidden
                     shadow-sm hover:shadow-lg hover:-translate-y-1
                     transform transition duration-200" do %>
 
   <% if book.cover_image.attached? %>
-  <div class="aspect-[9/16] bg-gray-300 overflow-hidden mx-auto ">
-    <%= image_tag book.cover_image, alt: book.title, class: "object-cover" %>
-  </div>
+    <div class="w-full h-48 bg-gray-100 overflow-hidden p-1 flex justify-center rounded-b-lg", style="height: 225px; padding-bottom: 0px">
+      <%= image_tag book.cover_image,
+                    alt: book.title,
+                    class: "object-cover mx-auto " %>
+    </div>
   <% else %>
-    <div class="w-full h-44 bg-gray-100 flex items-center justify-center text-gray-400">
+    <div class="w-full h-44 bg-gray-100 flex items-center justify-center text-gray-400 rounded-b-lg">
       Sem capa
     </div>
   <% end %>
 
-  <div class="p-4 flex-1 flex flex-col">
+<div class="p-4 flex-1 flex flex-col">
     <h3 class="text-lg font-semibold text-gray-800 truncate mb-2">
       <%= book.title %>
     </h3>
     <p class="text-sm text-gray-600 mb-3 truncate">
-      <%= book.author.presence || "Autor não informado" %>
+      <%= book.author.present? ? "Autor: #{book.author}" : "Autor: não informado" %>
     </p>
     <p class="text-sm text-gray-500 flex-1 overflow-hidden">
       <%= truncate(book.description, length: 100) %>

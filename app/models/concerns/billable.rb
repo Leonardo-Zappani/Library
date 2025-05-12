@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Billable
   extend ActiveSupport::Concern
 
@@ -10,11 +12,11 @@ module Billable
     return unless ENV['STRIPE_SECRET_KEY']
 
     customer = Stripe::Customer.create({
-      email: self.email,
-      metadata: {
-        external_id: self.id
-      }
-    })
+                                         email:,
+                                         metadata: {
+                                           external_id: id
+                                         }
+                                       })
 
     update(stripe_customer_id: customer.id)
   end
@@ -23,7 +25,7 @@ module Billable
   def set_stripe_subscription
     subscription_id = stripe_subscriptions&.first&.id
     paying_customer = subscription_id ? true : false
-    update(stripe_subscription_id: subscription_id, paying_customer: paying_customer)
+    update(stripe_subscription_id: subscription_id, paying_customer:)
   end
 
   def stripe_subscriptions
@@ -32,8 +34,8 @@ module Billable
 
   def stripe_customer
     Stripe::Customer.retrieve({
-      id: stripe_customer_id,
-      expand: ['subscriptions']
-    })
+                                id: stripe_customer_id,
+                                expand: ['subscriptions']
+                              })
   end
 end

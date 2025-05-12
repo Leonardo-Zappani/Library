@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ReadersController < ApplicationController
-  before_action :set_reader, only: %i[ show edit update destroy ]
+  before_action :set_reader, only: %i[show edit update destroy]
 
   # GET /readers or /readers.json
   def index
@@ -7,8 +9,7 @@ class ReadersController < ApplicationController
   end
 
   # GET /readers/1 or /readers/1.json
-  def show
-  end
+  def show; end
 
   # GET /readers/new
   def new
@@ -16,8 +17,7 @@ class ReadersController < ApplicationController
   end
 
   # GET /readers/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /readers or /readers.json
   def create
@@ -25,7 +25,7 @@ class ReadersController < ApplicationController
 
     respond_to do |format|
       if @reader.save
-        format.html { redirect_to reader_url(@reader), notice: "Reader was successfully created." }
+        format.html { redirect_to reader_url(@reader), notice: 'Reader was successfully created.' }
         format.json { render :show, status: :created, location: @reader }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class ReadersController < ApplicationController
   def update
     respond_to do |format|
       if @reader.update(name: params[:reader][:name], email: params[:reader][:email], code: params[:reader][:code])
-        format.html { redirect_to reader_url(@reader), notice: "Reader was successfully updated." }
+        format.html { redirect_to reader_url(@reader), notice: 'Reader was successfully updated.' }
         format.json { render :show, status: :ok, location: @reader }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class ReadersController < ApplicationController
     @reader.destroy!
 
     respond_to do |format|
-      format.html { redirect_to readers_url, notice: "Reader was successfully destroyed." }
+      format.html { redirect_to readers_url, notice: 'Reader was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reader
-      @reader = Reader.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def reader_params
-      params.fetch(:reader, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_reader
+    @reader = Reader.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def reader_params
+    params.fetch(:reader, {})
+  end
 end

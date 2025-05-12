@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :readers
@@ -6,7 +8,7 @@ Rails.application.routes.draw do
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_up: 'signup' }
   get 'logout', to: 'pages#logout', as: 'logout'
 
-  resources :account, only: [:index, :update]
+  resources :account, only: %i[index update]
   resources :books do
     member do
       post 'mark_as_available'
@@ -30,7 +32,7 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :dashboard, only: [:index]
       resources :impersonations, only: [:new]
-      resources :users, only: [:edit, :update, :destroy]
+      resources :users, only: %i[edit update destroy]
     end
 
     # convenience helper

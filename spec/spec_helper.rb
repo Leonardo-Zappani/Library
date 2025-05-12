@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'capybara'
 server_port = 3055
 Capybara.server_port = server_port

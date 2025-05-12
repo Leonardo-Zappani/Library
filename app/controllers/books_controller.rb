@@ -14,7 +14,6 @@ class BooksController < ApplicationController
   end
 
   def mark_as_available
-    p 'aaaaa'
     @book.update(available: true, reader_id: nil)
     redirect_to available_books_path
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DestroyUser
   attr_accessor :user
 

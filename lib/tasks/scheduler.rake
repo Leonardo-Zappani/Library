@@ -1,9 +1,11 @@
-task :insert_task_name => :environment do
+# frozen_string_literal: true
+
+task insert_task_name: :environment do
   # insert logic, e.g. a cron job for Heroku Scheduler add-on
 end
 
 ### USER ONBOARDING - run hourly at 0:00 ###
-task :reminder_to_start_trial => :environment do
+task reminder_to_start_trial: :environment do
   User.where(created_at: 24.hours.ago..23.hours.ago).each do |user|
     next if user.paying_customer?
 
