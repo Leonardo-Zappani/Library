@@ -1,30 +1,67 @@
-# Luminary - Sistema de Gerenciamento de Avaliações de Artigos em Eventos Científicos
+# Biblioteca MVC – Sistema de Gestão de Empréstimo de Livros
 
-Este projeto é uma aplicação web desenvolvida em Ruby e utilizando Tailwind CSS, criada com o objetivo de gerenciar as avaliações de artigos em eventos científicos. O sistema possui três tipos de usuários: Autor, Administrador e Avaliador.
+Uma aplicação web desenvolvida com Ruby on Rails e Tailwind CSS que permite o gerenciamento de uma biblioteca. O sistema segue o padrão de arquitetura MVC e possui funcionalidades para leitores e bibliotecários.
 
-## Requisitos do Sistema
+---
 
-1. **Fazer login e logout:** Todos os usuários podem fazer login e acessar apenas as funcionalidades permitidas.
+## 📚 Funcionalidades
 
-2. **Submeter, editar e deletar artigos:** Autores podem submeter, editar e deletar seus artigos, gerenciando informações como título, resumo, link para o PDF e lista de autores.
+### 👤 Leitor
 
-3. **Cadastrar, deletar e editar usuários:** Administradores podem gerenciar usuários, incluindo nome, e-mail, login, senha e tipo de usuário.
+- Visualizar lista de livros disponíveis
+- Ver detalhes de cada livro (título, autor, descrição, código)
 
-4. **Deletar artigos de qualquer usuário:** Administradores têm permissão para listar e deletar artigos de qualquer usuário.
+### 🛠️ Bibliotecário
 
-5. **Atribuir artigos para avaliação:** Administradores podem listar todos os artigos e atribuir até três avaliadores para cada um.
+- Login com e-mail e senha
+- Gerenciar usuários:
+  - Cadastrar novos leitores ou bibliotecários
+  - Editar informações (nome, e-mail, código)
+  - Excluir usuários
+- Gerenciar livros:
+  - Listar todos os livros (inclusive os emprestados)
+  - Cadastrar novos livros
+  - Editar e remover livros existentes
+- Controlar empréstimos:
+  - Atribuir livros a leitores
+  - Marcar devoluções com um clique
 
-6. **Avaliar artigos:** Avaliadores podem listar todos os artigos, atribuir notas de relevância (N1) e nível de experiência (N2), e a nota final é calculada multiplicando N1 por N2.
+---
 
-7. **Selecionar artigos para publicação:** O administrador pode visualizar os artigos ordenados por pontuação média das notas dos revisores e escolher quais serão publicados.
+## 🧠 Arquitetura MVC
 
-## Configuração dos Grupos
+- **Models**: Representam os dados (usuários, livros) e regras de negócio
+- **Views**: Páginas com HTML + Tailwind CSS que exibem informações ao usuário
+- **Controllers**: Recebem requisições, manipulam dados e retornam as views adequadas
 
-Este projeto pode ser desenvolvido individualmente, em duplas ou em grupos de até três pessoas.
+---
 
-## Tecnologias Utilizadas
+## 🧰 Tecnologias Utilizadas
 
-- Ruby
-- Tailwind CSS
-- MVC (Model-View-Controller)
+- [Ruby on Rails](https://rubyonrails.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- SQLite ou PostgreSQL
+- HTML5 e JavaScript
 
+---
+
+## 🚀 Instalação e Execução
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/biblioteca-mvc.git
+cd biblioteca-mvc
+```
+
+bundle install
+yarn install # se estiver usando Webpacker
+
+
+rails db:create db:migrate db:seed
+
+rails server
+
+Acesse no navegador:
+
+http://localhost:3000
