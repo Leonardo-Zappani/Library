@@ -7,15 +7,9 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    # Adicionando um logger para verificar os usuários, de maneira errada
-    # pois independente da condição, o log será o mesmo, ou seja, é uma computação desnecessaria
     if @users.any?
       @users.each do |user|
-        if user.active?
-          logger.info user.email
-        else
-          logger.info user.email
-        end
+        logger.info user.email
       end
     end
   end
@@ -29,8 +23,6 @@ class UsersController < ApplicationController
   def edit; end
 
   def create
-    # Adicionando variavel nao utilizada.
-    user = User.new(user_params)
     @user = User.new(user_params)
 
     if @user.save
