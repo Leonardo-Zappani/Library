@@ -6,6 +6,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+
+    if @users.any?
+      @users.each do |user|
+        logger.info user.email
+      end
+    end
   end
 
   def show; end
